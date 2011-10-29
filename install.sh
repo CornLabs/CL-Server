@@ -1,6 +1,8 @@
 #!/bin/bash
 
-script=$(readlink "$0")
-script="$(cd -P "$(dirname "$script")" && pwd)"
-script="$script/cls.sh"
-sudo ln -s $script "/usr/local/bin/cls"
+script="$(cd -P "$(dirname "$(readlink "$0")")" && pwd)/start.sh"
+target="/usr/local/bin/clstart"
+if [ -e $target ] || [ -h $target ]; then 
+	sudo rm $target 
+fi
+sudo ln -s $script $target
