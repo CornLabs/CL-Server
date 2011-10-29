@@ -5,10 +5,8 @@ command -v "npm" >/dev/null && echo "" || i=1
 command -v "git" >/dev/null && echo "" || { echo "This application requires either GIT or NPM to be installed! "; exit 1; }
 
 if [ "$i" -eq 0 ]; then
-	echo "Node"
 	npm install node-static
 else 
-	echo "git"
 	git submodule update --init --recursive
 fi
 script="$(cd -P "$(dirname "$(readlink "$0")")" && pwd)/start.sh"
